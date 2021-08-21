@@ -10,9 +10,9 @@ class BookvoedParser extends Parser {
 
         let bookData = [];
 
-        $('.Nz').each((i, el) => {
+        $('.Vz').each((i, el) => {
             let data = { };
-            data[$(el).children('.Oz').text()] = $(el).children('.Pz').text();
+            data[$(el).children('.Wz').text()] = $(el).children('.Xz').text();
             bookData.push(data);
         });
 
@@ -23,7 +23,7 @@ class BookvoedParser extends Parser {
             if (d['Тематика:']) book['genre'] = d['Тематика:'];
         }
 
-        $('.lh').each((i, el) => {
+        $('.rh').each((i, el) => {
             book['images'].push(`https://www.bookvoed.ru${$(el).attr('data-image-href')}`);
         });
 
@@ -32,16 +32,16 @@ class BookvoedParser extends Parser {
 
     async parse() {
         try {
-            let titles = (await this.getDataFromElements('a.jLb')).map(str => { return str.trim(); });
-            let images = await this.getDataFromElementsAttribs('img.Br', 'src');
-            let bookSources = await this.getDataFromElementsAttribs('a.zr', 'href');
-            let authors = (await this.getDataFromElements('div.Gr')).map(str => { return str.trim(); });
-            let prices = (await this.getDataFromChildElements('div.Mr', '.Jr')).map(str => {
+            let titles = (await this.getDataFromElements('a.yLb')).map(str => { return str.trim(); });
+            let images = await this.getDataFromElementsAttribs('img.Kr', 'src');
+            let bookSources = await this.getDataFromElementsAttribs('a.Ir', 'href');
+            let authors = (await this.getDataFromElements('div.Pr')).map(str => { return str.trim(); });
+            let prices = (await this.getDataFromChildElements('div.wg', '.xg')).map(str => {
                 if (str != '')
                     return str.replace(' ₽', '').replace(' ', '').trim();
                 return undefined;
             });
-            let typesProducts = await this.getDataFromElementsAttribs('div.Fh', 'data-item-type');
+            let typesProducts = await this.getDataFromElementsAttribs('div.Lh', 'data-item-type');
 
             let books = [];
         

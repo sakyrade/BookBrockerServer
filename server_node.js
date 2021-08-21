@@ -54,9 +54,9 @@ const parse = async (search) => {
 
     if (books.length) {
         books = booksFilter(books);
-        await databaseRepository.openConnection('SearchBooksAppDB');
-        await updateBooks(search, books);
-        databaseRepository.closeConnection();
+        //await databaseRepository.openConnection('SearchBooksAppDB');
+        //await updateBooks(search, books);
+        //databaseRepository.closeConnection();
     }
 
     return { 'books': books };
@@ -66,4 +66,6 @@ server.get('/search_books', async (req, res) => {
     res.send(await parse(req.query.search));
 });
 
-server.listen(process.env.PORT || 5000);
+server.listen(3000);
+
+//server.listen(process.env.PORT || 5000);
